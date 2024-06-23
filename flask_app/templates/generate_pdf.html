@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Theme Made By www.w3schools.com - No Copyright -->
+  <title>Pdf Generator</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  <script type="module" src="https://cdn.jsdelivr.net/gh/zerodevx/zero-md@2/dist/zero-md.min.js"></script>
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+  <!--Folder gif-->
+  <link href="{{ url_for('static', filename='css/icons8-refresh-folder.gif') }}" rel="stylesheet">
+
+  <!--md-block-->
+  <script type="module" src="{{ url_for('static', filename='js/md-block/md-block.js') }}"></script>
+  <script type="module" src="{{ url_for('static', filename='js/md-block/prism.js') }}"></script>
+  
+</head>
+<body>
+
+  <div class="container-fluid" id="content"> <!--Main container-fluid-->
+
+    <div class="bg-3 jumbotron">
+      <div class="container text-center">
+        <img src="{{ url_for('static', filename='img/icons8-pdf-65.png') }}" class="img-circle" alt="pdf">
+        <h3>Receipt Generator App</h3>
+        <p>Multiple PDF file Generator</p>
+        <form action="/generate" method="POST">
+          {% with messages = get_flashed_messages() %}
+              {% if messages %}
+                  {% for message in messages %}
+                  <div class="alert alert-danger alert-dismissible">
+                      <a class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                      <strong>Warning!</strong> {{message}}
+                  </div>
+                  {% endfor %}
+              {% endif %}
+          {% endwith %}
+          <button type="submit" class="btn btn-danger btn-lg" onclick="loading();">Generate and Download Receipts in PDF <img src="{{ url_for('static', filename='img/icons8-pdf-24.png') }}" alt="pdf"></button>
+        </form>
+        <br>
+        <code>
+          <!-- b>C:\Users\User\Downloads\Invoices</b> -->
+        </code>
+      </div>
+    </div>
+
+    <div class="container-fluid bg-2 text-center">
+      <h3>Core, Frontend, Backend and Database</h3>
+      <p>Python, HTML5, CSS3, Bootstrap, JavaScript, Flask and MySQL</p>
+      
+      <p align="text-center">
+        <a href="https://www.python.org/" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/python-colored.svg" width="36" height="36" alt="Python" /></a>
+        <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/javascript-colored.svg" width="36" height="36" alt="JavaScript" /></a>
+        <a href="https://developer.mozilla.org/en-US/docs/Glossary/HTML5" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/html5-colored.svg" width="36" height="36" alt="HTML5" /></a>
+        <a href="https://getbootstrap.com/" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/bootstrap-colored.svg" width="36" height="36" alt="Bootstrap" /></a>
+        <a href="https://www.w3.org/TR/CSS/#css" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/css3-colored.svg" width="36" height="36" alt="CSS3" /></a>
+        <a href="https://www.mysql.com/" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/mysql-colored.svg" width="36" height="36" alt="MySQL" /></a>
+        <a href="https://flask.palletsprojects.com/en/2.0.x/" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/flask-colored.svg" width="36" height="36" alt="Flask" /></a>
+    </div>  
+
+    <hr>
+
+    <footer class="bg-3 container-fluid text-center">
+        <h3>Socials</h3>
+      
+        <p align="text_center">
+          <a href="https://www.github.com/F-Nunnez" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/socials/github.svg" width="32" height="32" /></a>
+          <a href="https://www.linkedin.com/in/franknz/" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/socials/linkedin.svg" width="32" height="32" /></a>
+          <a href="https://www.stackoverflow.com/users/22084177/francisco-nunez" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/socials/stackoverflow.svg" width="32" height="32" /></a>
+          <a href="https://www.twitter.com/F_Nunnez" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/socials/twitter.svg" width="32" height="32" /></a>
+        </p>
+    </footer>  
+  </div><!--Main container-fluid-->
+
+
+  <!--loading gif-->
+  <div class="container-fluid" id="loading">
+    
+  </div>
+
+<!--loading gif-->
+<script type="text/javascript">// <![CDATA[
+  function loading(){
+      $("#loading").show();
+      $("#content").hide();       
+  }
+// ]]></script>
+
+<!-- Core plugin JavaScript-->
+<script type="text/javascript" src="{{ url_for('static', filename='vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+
+</body>
+</html>
